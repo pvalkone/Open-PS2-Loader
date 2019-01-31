@@ -20,10 +20,7 @@ RUN git clone --quiet https://github.com/ps2dev/ps2toolchain.git
 RUN cd /ps2toolchain && sed -i -e 's|git clone https://github.com/ps2dev/ps2sdk && cd ps2sdk|git clone https://github.com/ps2dev/ps2sdk \&\& cd ps2sdk \&\& git reset --hard '${PS2SDK_REVISION}'|' -e 's|origin/master|'${PS2SDK_REVISION}'|' scripts/005-ps2sdk.sh && bash ./toolchain.sh
 
 RUN git clone --quiet https://github.com/ps2dev/ps2sdk-ports.git
-RUN cd /ps2sdk-ports/zlib && make install
-RUN cd /ps2sdk-ports/libpng && make install
-RUN cd /ps2sdk-ports/libjpeg && make install
-RUN cd /ps2sdk-ports/freetype-2.9.1 && bash ./SetupPS2.sh
+RUN cd /ps2sdk-ports && make zlib libpng libjpeg freetype2
 
 RUN git clone --quiet https://github.com/ps2dev/ps2eth
 RUN cd /ps2eth && make && mkdir -p /usr/lib/ps2dev/ps2eth && tar c $(find . -name \*irx) | tar x -C /usr/lib/ps2dev/ps2eth
