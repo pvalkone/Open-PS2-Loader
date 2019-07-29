@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PS2SDK_REVISION=a0b7850e
+PS2SDK_REVISION=e2afe92
 
 rm OPNPS2LD*.ELF
 docker build --tag pvalkone/opl:latest --build-arg PS2SDK_REVISION=${PS2SDK_REVISION} .
